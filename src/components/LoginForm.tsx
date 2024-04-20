@@ -1,34 +1,33 @@
 import React, { useState } from "react";
-import { authentication } from "../services";
+import { useAuth } from "../context";
 
 const LoginForm = () => {
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    authentication({ username, password });
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // Envie as credenciais para o backend para autenticação
+    login(username, password);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="username" className="form-label">
-          Username
-        </label>
+    <form onSubmit={handleSubmit} className="w-100">
+      <h3 className="mb-5">Faça seu login</h3>
+
+      <div className="mb-3 input-group-lg">
         <input
-          type="text"
+          type="email"
           className="form-control"
           id="username"
           value={username}
+          aria-describedby="emailHelp"
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
+
+      <div className="mb-3 input-group-lg">
         <input
           type="password"
           className="form-control"
@@ -37,8 +36,29 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Login
+
+      <div className="d-flex flex-row justify-content-between">
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label className="form-check-label" for="flexCheckDefault">
+            Lembrar-me
+          </label>
+        </div>
+
+        <p>
+          <a className="link-opacity-75-hover" href="#">
+            Link hover opacity 75
+          </a>
+        </p>
+      </div>
+
+      <button type="submit" className="btn btn-success w-100 btn-lg">
+        Entrar
       </button>
     </form>
   );

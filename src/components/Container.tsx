@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Container = ({ children }: Props) => {
-  return <div className="container">{children}</div>;
+  return <div className="container-fluid vh-100">{children}</div>;
 };
 
 export default Container;
