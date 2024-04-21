@@ -1,10 +1,20 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ErrorPage, LoginPage } from "../pages";
+import { ErrorPage, HomePage, LoginPage, Root } from "../pages";
 import { useAuth } from "../context";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/empresas",
+      },
+    ],
+  },
+  {
+    path: "/login",
     element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
