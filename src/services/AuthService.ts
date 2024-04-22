@@ -1,24 +1,22 @@
 import axios from "axios";
 
-const url = "https://localhost:3000";
+const api = axios.create({
+  baseURL: "http://localhost:3000",
+});
 
-type AuthType = {
-  username: string;
+type CredentialsType = {
+  email: string;
   password: string;
 };
 
-const authentication = async ({ username, password }: AuthType) => {
+export const authenticate = async ({ email, password }: CredentialsType) => {
   try {
-    const response = await axios.post(`${url}/auth/login`, {
-      username,
-      password,
-    });
-    console.log(response.data);
-    // Handle successful login, e.g., save token to local storage and redirect
+    const response = await api.post("/login", { email, password });
+    const token = response.data.access_token;
+    await localStorage.setItem("token", token);
+    return token;
   } catch (error) {
     console.error("Login failed:", error);
-    // Handle login failure, e.g., display error message
+    throw error;
   }
 };
-
-export { authentication };

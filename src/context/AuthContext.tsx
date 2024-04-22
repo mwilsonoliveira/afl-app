@@ -1,9 +1,9 @@
 import { createContext, useState, useContext } from "react";
-import { authentication } from "../services";
+import { authenticate } from "../services";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (username: string, password: string) => void;
+  login: (email: string, password: string) => void;
   logout: () => void;
 }
 
@@ -18,10 +18,12 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }: any) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const login = async (username: string, password: string) => {
+  const login = async (email: string, password: string) => {
     try {
-      await authentication({ username, password });
-      setIsAuthenticated(true);
+      const success = await authenticate({ email, password });
+      if (success) {
+        setIsAuthenticated(true);
+      }
     } catch (error) {
       console.error("Login failed:", error);
     }

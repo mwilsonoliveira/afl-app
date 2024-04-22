@@ -19,7 +19,7 @@ const LoginForm = () => {
       <div className="mb-4 input-group-lg">
         <input
           type="email"
-          className="form-control"
+          className="form-control border"
           id="username"
           value={username}
           aria-describedby="emailHelp"
@@ -31,7 +31,7 @@ const LoginForm = () => {
       <div className="mb-3 input-group-lg">
         <input
           type="password"
-          className="form-control"
+          className="form-control border"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

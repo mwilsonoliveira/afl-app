@@ -1,3 +1,3 @@
-import { authentication } from "./AuthService";
+import { authenticate } from "./authService";
 
-export { authentication };
+export { authenticate };
