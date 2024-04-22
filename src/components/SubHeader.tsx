@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 type SubHeaderType = {
   withButton?: boolean;
 };
 
 const SubHeader = ({ withButton }: SubHeaderType) => {
+  const navigate = useNavigate();
+
   return (
     <div className="d-flex justify-content-between">
       <div>
@@ -23,7 +27,10 @@ const SubHeader = ({ withButton }: SubHeaderType) => {
       </div>
       {withButton && (
         <div className="d-flex align-items-center">
-          <button className="btn btn-primary text-white px-3 py-2">
+          <button
+            className="btn btn-primary text-white px-3 py-2"
+            onClick={() => navigate("/empresas/cadastro")}
+          >
             <b>Novo Cadastro</b>
           </button>
         </div>

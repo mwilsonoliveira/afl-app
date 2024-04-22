@@ -22,7 +22,6 @@ export const authenticate = async ({ email, password }: CredentialsType) => {
 };
 
 export const unauthenticate = async () => {
-  console.log("chegou no unauthenticate");
   try {
     await localStorage.removeItem("token");
   } catch (error) {

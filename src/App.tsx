@@ -2,17 +2,13 @@ import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context";
 import { Header, SideNav, SubHeader } from "./components";
 import { Dashboard, Empresas, LoginPage } from "./pages";
+import Cadastro from "./pages/Cadastro";
 
 const PrivateLayout = () => {
-  // Verifique se o usuário está autenticado
   const { isAuthenticated } = useAuth();
 
-  console.log("isAuthenticated: ", isAuthenticated);
-
-  // Obtenha a localização atual
   const location = useLocation();
 
-  // Redirecione para a página de login se o usuário não estiver autenticado
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
   }
@@ -38,6 +34,7 @@ const App = () => {
         <Route path="/" element={<PrivateLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="empresas" element={<Empresas />} />
+          <Route path="empresas/cadastro" element={<Cadastro />} />
         </Route>
         <Route path="login" element={<LoginPage />} />
       </Routes>

@@ -10,12 +10,12 @@ const SideNav = () => {
   const [navItems] = useState([
     {
       name: "Dashboard",
-      linkTo: "/",
+      path: "/",
       icon: <PuzzlePiece />,
     },
     {
       name: "Empresas",
-      linkTo: "/empresas",
+      path: "/empresas",
       icon: <Company />,
     },
   ]);
@@ -37,10 +37,8 @@ const SideNav = () => {
           {navItems.map((item, index) => (
             <li key={index} className="nav-item mb-3">
               <Link
-                to={item.linkTo}
-                className={`nav-link ${
-                  pathname === item.linkTo ? "active" : ""
-                }`}
+                to={item.path}
+                className={`nav-link ${pathname === item.path ? "active" : ""}`}
                 style={{ padding: "12px" }}
               >
                 {item.icon}
