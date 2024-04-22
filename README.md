@@ -12,7 +12,7 @@ Siga estas instruções para configurar e executar o frontend do projeto.
 Clone o repositório do projeto do GitHub:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
+git clone https://github.com/mwilsonoliveira/afl-app.git
 ```
 
 ### Passo 2: Instalar as dependências
@@ -20,7 +20,7 @@ git clone https://github.com/seu-usuario/seu-projeto.git
 Acesse o diretório do projeto e instale as dependências do frontend usando npm ou yarn:
 
 ```
-cd seu-projeto/frontend
+cd seu-diretorio/afl-app
 npm install
 # ou
 yarn install
