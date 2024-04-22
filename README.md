@@ -4,7 +4,7 @@ Siga estas instruções para configurar e executar o frontend do projeto.
 
 ### Pré-requisitos
 
-- Node.js instalado (v14.0.0 ou superior)
+- Node.js instalado (v16.0.0 ou superior)
 - npm (Node Package Manager) ou Yarn
 
 ### Passo 1: Clonar o repositório
