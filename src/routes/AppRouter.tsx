@@ -21,6 +21,7 @@ const AppRouter = () => {
         },
         {
           path: "/empresas",
+          element: <HomePage />,
         },
       ],
     },

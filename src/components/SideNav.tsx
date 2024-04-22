@@ -1,8 +1,25 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Company from "../assets/icons/Company";
 import PuzzlePiece from "../assets/icons/PuzzlePiece";
 import logo from "../assets/logo.png";
 
 const SideNav = () => {
+  const { pathname } = useLocation();
+
+  const [navItems] = useState([
+    {
+      name: "Dashboard",
+      linkTo: "/home",
+      icon: <PuzzlePiece />,
+    },
+    {
+      name: "Empresas",
+      linkTo: "/empresas",
+      icon: <Company />,
+    },
+  ]);
+
   return (
     <div
       className="d-flex flex-column align-align-items-center border-end border-light-subtle"
@@ -17,23 +34,20 @@ const SideNav = () => {
 
       <div className="d-flex justify-content-center mt-4">
         <ul className="nav nav-pills d-flex flex-column w-100 m-4">
-          <li className="nav-item mb-3">
-            <a className="nav-link active" style={{ padding: "12px" }} href="#">
-              <PuzzlePiece />
-              <b style={{ marginLeft: "8px" }}>Dashboard</b>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              style={{ padding: "12px" }}
-              aria-current="page"
-              href="#"
-            >
-              <Company />
-              <b style={{ marginLeft: "8px" }}>Empresas</b>
-            </a>
-          </li>
+          {navItems.map((item, index) => (
+            <li key={index} className="nav-item mb-3">
+              <Link
+                to={item.linkTo}
+                className={`nav-link ${
+                  pathname === item.linkTo ? "active" : ""
+                }`}
+                style={{ padding: "12px" }}
+              >
+                {item.icon}
+                <b style={{ marginLeft: "8px" }}>{item.name}</b>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
