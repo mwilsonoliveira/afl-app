@@ -1,5 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import { authenticate } from "../services";
+import { unauthenticate } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -16,6 +18,7 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: any) => {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const login = async (email: string, password: string) => {
@@ -23,14 +26,21 @@ export const AuthProvider = ({ children }: any) => {
       const success = await authenticate({ email, password });
       if (success) {
         setIsAuthenticated(true);
+        navigate("/");
       }
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
+  const logout = async () => {
+    try {
+      await unauthenticate();
+      setIsAuthenticated(false);
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   return (

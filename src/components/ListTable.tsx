@@ -44,7 +44,7 @@ const ListTable = () => {
       );
 
       if (!confirmDelete) {
-        return; // Se o usuário cancelar, saia da função
+        return;
       }
 
       setLoading(true);

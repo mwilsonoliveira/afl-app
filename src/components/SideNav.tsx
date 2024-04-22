@@ -10,7 +10,7 @@ const SideNav = () => {
   const [navItems] = useState([
     {
       name: "Dashboard",
-      linkTo: "/home",
+      linkTo: "/",
       icon: <PuzzlePiece />,
     },
     {

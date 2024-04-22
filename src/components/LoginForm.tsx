@@ -8,7 +8,6 @@ const LoginForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Envie as credenciais para o backend para autenticação
     login(username, password);
   };
 
